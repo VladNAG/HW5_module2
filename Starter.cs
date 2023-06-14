@@ -24,10 +24,28 @@ namespace HW5_module2
                         HandleResult(result);
                         break;
                     case 2:
-                        Actions.Second();
+                        try
+                        {
+                            Actions.Second();
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger log = Logger.Instance;
+                            log.Log("Action failed by reason", Logger.LogLevel.Error, ex);
+                        }
+
                         break;
                     case 3:
-                        Actions.Third();
+                        try
+                        {
+                            Actions.Third();
+                        }
+                        catch (BusinessException ex)
+                        {
+                            Logger log = Logger.Instance;
+                            log.Log("Action got this custom Exception :”", Logger.LogLevel.Warning, ex);
+                        }
+
                         break;
                 }
             }

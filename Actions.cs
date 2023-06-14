@@ -19,14 +19,12 @@ namespace HW5_module2
 
         public static void Second()
         {
-            var exc2 = new SomeException();
-            exc2.WriteBusinessExcepion();
+            throw new Exception("I broke a logic");
         }
 
         public static void Third()
         {
-            var exc3 = new SomeException();
-            exc3.WriteExcepion();
+            throw new BusinessException("Skipped logic in method");
         }
     }
 }

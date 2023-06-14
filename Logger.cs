@@ -51,5 +51,16 @@ namespace HW5_module2
         {
             return string.Join("\n", logs);
         }
+
+        public void Log(string message, LogLevel logLevel, Exception ex)
+        {
+            Console.WriteLine(ex);
+            FileService.WriteToFile(ex.ToString());
+            string log = $"{DateTime.Now}: {logLevel}: {message}";
+            logs[currentLogIndex] = log;
+            currentLogIndex = (currentLogIndex + 1) % maxLogs;
+            Console.WriteLine(log);
+            FileService.WriteToFile(log);
+        }
     }
 }
