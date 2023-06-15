@@ -17,36 +17,33 @@ namespace HW5_module2
             {
                 int methodNumber = random.Next(1, 4);
 
-                switch (methodNumber)
+                try
                 {
-                    case 1:
-                        var result = Actions.First();
-                        HandleResult(result);
-                        break;
-                    case 2:
-                        try
-                        {
+                    switch (methodNumber)
+                    {
+                        case 1:
+                            var result = Actions.First();
+                            HandleResult(result);
+                            break;
+
+                        case 2:
                             Actions.Second();
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger log = Logger.Instance;
-                            log.Log("Action failed by reason", Logger.LogLevel.Error, ex);
-                        }
+                            break;
 
-                        break;
-                    case 3:
-                        try
-                        {
+                        case 3:
                             Actions.Third();
-                        }
-                        catch (BusinessException ex)
-                        {
-                            Logger log = Logger.Instance;
-                            log.Log("Action got this custom Exception :”", Logger.LogLevel.Warning, ex);
-                        }
-
-                        break;
+                            break;
+                    }
+                }
+                catch (BusinessException ex)
+                {
+                    Logger log = Logger.Instance;
+                    log.Log("Action got this custom Exception :”", Logger.LogLevel.Warning, ex);
+                }
+                catch (Exception ex)
+                {
+                    Logger log = Logger.Instance;
+                    log.Log("Action failed by reason", Logger.LogLevel.Error, ex);
                 }
             }
         }
